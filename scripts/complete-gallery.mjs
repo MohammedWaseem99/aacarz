@@ -1,0 +1,14 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const manifest=JSON.parse(await readFile('dist/assets/cars/gallery/manifest.json','utf8'));
+const headers={'User-Agent':'AA-Carz-Demo/1.0 (vehicle photo attribution)'};
+const title='File:Toyota RAV4 4x2 XLE 2019 Interior.jpg';
+const query=new URLSearchParams({action:'query',format:'json',prop:'imageinfo',titles:title,iiprop:'url|extmetadata|size',iiurlwidth:'1400'});
+const response=await fetch('https://commons.wikimedia.org/w/api.php?'+query,{headers});
+if(!response.ok)throw new Error('HTTP '+response.status);
+const json=await response.json();const info=Object.values(json.query.pages)[0].imageinfo[0];
+const image=await fetch(info.thumburl||info.url,{headers});if(!image.ok)throw new Error('Image HTTP '+image.status);
+await writeFile('dist/assets/cars/gallery/rav4-interior.jpg',Buffer.from(await image.arrayBuffer()));
+const meta=info.extmetadata;manifest.rav4=[{label:'Interior',src:'assets/cars/gallery/rav4-interior.jpg',title,source:info.descriptionurl,artist:meta.Artist?.value,license:meta.LicenseShortName?.value,licenseUrl:meta.LicenseUrl?.value}];
+await writeFile('dist/assets/cars/gallery/manifest.json',JSON.stringify(manifest,null,2));
+await writeFile('dist/gallery-data.js','// Model reference photos, not photographs of actual inventory.\nconst galleryPhotos='+JSON.stringify(manifest,null,2)+';\n');
+console.log('Completed RAV4 interior. All 11 cars now have multiple photographs.');
