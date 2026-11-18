@@ -52,7 +52,7 @@ try {
   await evaluate(`document.querySelector('[name=confirmed]').checked=true;document.querySelector('#booking-form').requestSubmit()`);
   if(!await evaluate(`document.querySelector('.booking-success').textContent.includes('Appointment saved')`))throw new Error('Booking confirmation failed.');
   await evaluate("location.hash='home'");await new Promise(r=>setTimeout(r,100));
-  if(await evaluate(`document.querySelectorAll('.home-featured .range-card').length`)!==11)throw new Error('Home featured cars failed.');
+  if(await evaluate(`document.querySelectorAll('.home-featured .range-card').length`)!==21)throw new Error('Home featured cars failed.');
   await evaluate(`document.querySelector('.home-faq summary').click()`);
   if(!await evaluate(`document.querySelector('.home-faq details').open`))throw new Error('Home FAQ did not expand.');
   const layout=await cdp('Page.getLayoutMetrics');
@@ -88,7 +88,7 @@ try {
     if(!await evaluate(`document.querySelectorAll('.car-row').length>0`))throw new Error('Missing brand cars: '+slug);
     if(['toyota','bmw'].includes(slug))await writeFile(`qa/${slug}-hq.png`,Buffer.from((await cdp('Page.captureScreenshot',{format:'png'})).data,'base64'));
   }
-  for(let id=1;id<=11;id++){
+  for(let id=1;id<=21;id++){
     await evaluate(`location.hash='car/${id}'`);await new Promise(r=>setTimeout(r,150));
     if(await evaluate(`document.querySelectorAll('[data-gallery-index]').length`)<2)throw new Error('Missing multi-photo gallery for car '+id);
     await evaluate(`document.querySelector('[data-gallery-index="1"]').click()`);
@@ -98,7 +98,7 @@ try {
   await evaluate(`document.querySelector('[data-gallery-open]').click()`);
   if(!await evaluate(`document.querySelector('#gallery-lightbox').open`))throw new Error('Fullscreen gallery failed.');
   await evaluate(`document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
-  if(!await evaluate(`document.querySelector('#lightbox-caption').textContent.includes('3 /')`))throw new Error('Keyboard gallery navigation failed.');
+  if(!await evaluate(`document.querySelector('#lightbox-caption').textContent.includes('1 /')`))throw new Error('Keyboard gallery navigation failed.');
   await evaluate(`document.querySelector('[data-gallery-close]').click()`);
   if(await evaluate(`document.querySelector('#gallery-lightbox').open`))throw new Error('Closing gallery failed.');
   await evaluate(`location.hash='car/7'`);await new Promise(r=>setTimeout(r,150));
@@ -109,7 +109,7 @@ try {
   await writeFile('qa/gallery-interior.png',Buffer.from((await cdp('Page.captureScreenshot',{format:'png'})).data,'base64'));
   await evaluate(`location.hash='home'`);await new Promise(r=>setTimeout(r,100));
   await evaluate(`document.querySelector('#finder-make').value='Toyota';document.querySelector('#finder-make').dispatchEvent(new Event('change',{bubbles:true}))`);
-  if(await evaluate(`document.querySelector('#finder-model').options.length`)!==4)throw new Error('Make/model dependency failed.');
+  if(await evaluate(`document.querySelector('#finder-model').options.length`)!==8)throw new Error('Make/model dependency failed.');
   await evaluate(`document.querySelector('#finder-model').value='Toyota RAV4';document.querySelector('#finder-model').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#finder-year').value='2024';document.querySelector('#finder-year').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#finder-body').value='SUV';document.querySelector('#finder-body').dispatchEvent(new Event('change',{bubbles:true}))`);
   if(!await evaluate(`document.querySelector('#finder-count').textContent==='Search 1 car'`))throw new Error('Combined filter count failed.');
   await evaluate(`document.querySelector('#car-finder-form').requestSubmit()`);await new Promise(r=>setTimeout(r,120));
@@ -117,7 +117,7 @@ try {
   await evaluate(`document.querySelector('#finder-body').value='Sedan';document.querySelector('#finder-body').dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('#car-finder-form').requestSubmit()`);await new Promise(r=>setTimeout(r,100));
   if(!await evaluate(`!!document.querySelector('#results .empty-state')`))throw new Error('Filter zero-match state failed.');
   await evaluate(`document.querySelector('[data-finder-reset]').click()`);await new Promise(r=>setTimeout(r,100));
-  if(await evaluate(`document.querySelectorAll('#results .car-card').length`)!==11)throw new Error('Filter reset failed.');
+  if(await evaluate(`document.querySelectorAll('#results .car-card').length`)!==21)throw new Error('Filter reset failed.');
   for(const width of [250,390,768,1440]){
     await cdp('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<768});
     await evaluate(`location.hash='cars'`);await new Promise(r=>setTimeout(r,100));
@@ -142,13 +142,13 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
   await evaluate(`location.hash='home'`);await new Promise(r=>setTimeout(r,150));
   await evaluate(`document.querySelector('.vehicle-range').scrollIntoView()`);await new Promise(r=>setTimeout(r,100));
-  if(await evaluate(`document.querySelectorAll('.range-card').length`)!==11)throw new Error('Vehicle carousel cards missing.');
+  if(await evaluate(`document.querySelectorAll('.range-card').length`)!==21)throw new Error('Vehicle carousel cards missing.');
   await evaluate(`document.querySelector('[data-range-step="1"]').click()`);await new Promise(r=>setTimeout(r,500));
   if(!await evaluate(`document.querySelector('#vehicle-range-track').scrollLeft>100`))throw new Error('Carousel next failed.');
   await evaluate(`document.querySelector('[data-range-tab="new"]').click()`);
   if(!await evaluate(`!!document.querySelector('.range-empty')`))throw new Error('New Cars empty state failed.');
   await evaluate(`document.querySelector('[data-range-tab="used"]').click()`);
-  if(await evaluate(`document.querySelectorAll('.range-card').length`)!==11)throw new Error('Used Cars tab failed.');
+  if(await evaluate(`document.querySelectorAll('.range-card').length`)!==21)throw new Error('Used Cars tab failed.');
   if(await evaluate(`document.querySelectorAll('.dealership-statistics strong').length`)!==4)throw new Error('Statistics section missing.');
   await writeFile('qa/vehicle-carousel-mobile.png',Buffer.from((await cdp('Page.captureScreenshot',{format:'png'})).data,'base64'));
   await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});await new Promise(r=>setTimeout(r,200));

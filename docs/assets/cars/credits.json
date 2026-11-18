@@ -232,5 +232,44 @@
     "artist": "<a href=\"//commons.wikimedia.org/wiki/User:TTTNIS\" title=\"User:TTTNIS\">TTTNIS</a>",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+    "key": "civic",
+    "model": "Honda Civic (eleventh generation)",
+    "file": "2022_Honda_Civic_Touring_in_Lunar_Silver_Metallic,_Front_Left,_05-10-2022.jpg",
+    "local": "civic.jpg",
+    "width": 1600,
+    "height": 835,
+    "source": "https://commons.wikimedia.org/wiki/File:2022_Honda_Civic_Touring_in_Lunar_Silver_Metallic,_Front_Left,_05-10-2022.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b5/2022_Honda_Civic_Touring_in_Lunar_Silver_Metallic%2C_Front_Left%2C_05-10-2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Elise240SX\" title=\"User:Elise240SX\">Elise240SX</a>",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "key": "leaf",
+    "model": "Nissan Leaf",
+    "file": "Nissan_Leaf_(ZE2)_autoMOBIL_Tübingen_2025_DSC_2752.jpg",
+    "local": "leaf.jpg",
+    "width": 1600,
+    "height": 878,
+    "source": "https://commons.wikimedia.org/wiki/File:Nissan_Leaf_(ZE2)_autoMOBIL_T%C3%BCbingen_2025_DSC_2752.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/73/Nissan_Leaf_%28ZE2%29_autoMOBIL_T%C3%BCbingen_2025_DSC_2752.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Alexander-93\" title=\"User:Alexander-93\">Alexander Migl</a>",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "key": "gla",
+    "model": "Mercedes-Benz GLA",
+    "file": "Mercedes-Benz_GLA_250_e_AMG_Line_(H_247)_–_f_11042021_(exposure_adjusted).jpg",
+    "local": "gla.jpg",
+    "width": 1600,
+    "height": 859,
+    "source": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_GLA_250_e_AMG_Line_(H_247)_%E2%80%93_f_11042021_(exposure_adjusted).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Mercedes-Benz_GLA_250_e_AMG_Line_%28H_247%29_%E2%80%93_f_11042021_%28exposure_adjusted%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+    "artist": "<b>© <a href=\"//commons.wikimedia.org/wiki/User:M_93\" title=\"User:M 93\">M 93</a></b>",
+    "license": "CC BY-SA 3.0 de",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
   }
 ]

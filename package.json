@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node ./node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./dist/styles.css --minify",
     "watch": "node ./node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./dist/styles.css --watch",
-    "check": "node --check dist/app.js && node --check dist/support.js && node --check dist/icons.js && node --check dist/gallery.js && node --check dist/gallery-zoom.js && node --check dist/gallery-data.js && node --check dist/filters.js && node --check dist/carousel.js && node --check dist/product.js && node --check dist/scroll-reveal.js && node --check dist/home-depth.js"
+    "check": "node --check dist/app.js && node --check dist/support.js && node --check dist/icons.js && node --check dist/gallery.js && node --check dist/gallery-zoom.js && node --check dist/gallery-data.js && node --check dist/filters.js && node --check dist/carousel.js && node --check dist/product.js && node --check dist/scroll-reveal.js && node --check dist/home-depth.js && node --check dist/desktop.js"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.0",
